@@ -48,29 +48,20 @@ public class ProductDAOImpl implements ProductDAO {
     public int addProduct(Product ep) throws Exception {
         int r = -1;
 
-        try {
-            String sql = "insert into product(name,description,price,stock,categoryLevel1Id,categoryLevel2Id,categoryLevel3Id,fileName,isDelete) values(?,?,?,?,?,?,?,?,?)";
-            Object[] param = {ep.getName(), ep.getDescription(), ep.getPrice(), ep.getStock(), ep.getCategoryLevel1Id(), ep.getCategoryLevel2Id(), ep.getCategoryLevel3Id(), ep.getFileName(), ep.getIsDelete()};
-            r = bd.executeUpdate(sql, param);
-        } catch (Exception e) {
-            throw e;
-        }
+        String sql = "insert into product(name,description,price,stock,categoryLevel1Id,categoryLevel2Id,categoryLevel3Id,fileName,isDelete) values(?,?,?,?,?,?,?,?,?)";
+        Object[] param = {ep.getName(), ep.getDescription(), ep.getPrice(), ep.getStock(), ep.getCategoryLevel1Id(), ep.getCategoryLevel2Id(), ep.getCategoryLevel3Id(), ep.getFileName(), ep.getIsDelete()};
+        r = bd.executeUpdate(sql, param);
         return r;
     }
     @Override
     public int modifyProduct(Product ep) throws Exception {
         int r = -1;
 
-        try {
+        String sql = "update  product set name=?,description=?,price=?,stock=?,categoryLevel1Id=?,categoryLevel2Id=?,categoryLevel3Id=?,fileName=?,isDelete=? where id=?";
+        Object[] param = {ep.getName(), ep.getDescription(), ep.getPrice(), ep.getStock(), ep.getCategoryLevel1Id(), ep.getCategoryLevel2Id(), ep.getCategoryLevel3Id(), ep.getFileName(), ep.getIsDelete(), ep.getId()};
 
-            String sql = "update  product set name=?,description=?,price=?,stock=?,categoryLevel1Id=?,categoryLevel2Id=?,categoryLevel3Id=?,fileName=?,isDelete=? where id=?";
-            Object[] param = {ep.getName(), ep.getDescription(), ep.getPrice(), ep.getStock(), ep.getCategoryLevel1Id(), ep.getCategoryLevel2Id(), ep.getCategoryLevel3Id(), ep.getFileName(), ep.getIsDelete(), ep.getId()};
+        r = bd.executeUpdate(sql, param);
 
-            r = bd.executeUpdate(sql, param);
-
-        } catch (Exception e) {
-            throw e;
-        }
         return r;
     }
 
