@@ -67,9 +67,8 @@ public class IndexServlet extends HttpServlet {
              * 分类信息
              */
             List<ProductCategory> listCategroy = productCategoryDAO.getCategroyByParnetId(0);
-
+            ProductCategory productCategory = listCategroy.get(1);
             request.getSession().setAttribute("listCategroy", listCategroy);
-
             request.getRequestDispatcher("dynamicPage/Index.jsp").forward(request, response);
 
         } catch (Exception e) {

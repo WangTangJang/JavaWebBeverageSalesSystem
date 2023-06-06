@@ -21,9 +21,9 @@
     <%@include file="Header.jsp"%>
 </div>
 <!-- 公告栏 -->
-<div class="sidebarRight">
-    <%@include file="NewsSidebar.jsp"%>
-</div>
+<%--<div class="sidebarRight">--%>
+<%--    <%@include file="NewsSidebar.jsp"%>--%>
+<%--</div>--%>
 <!-- 侧边栏 -->
 <div class="sidebar">
     <ul>
@@ -52,9 +52,7 @@
                 <ddclass="price">￥${p.price}</dd>
             </h3>
         </div>
-
     </c:forEach>
-
 </div>
 
 <footer class="footer">

@@ -53,7 +53,7 @@ public class UserServlet extends HttpServlet {
                 request.getRequestDispatcher("dynamicPage/Login.jsp").forward(request, response);
             } else {
                 request.getSession().setAttribute("USERS", user);
-                response.sendRedirect("dynamicPage/Index.jsp");
+                response.sendRedirect("IndexServlet");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,7 +121,6 @@ public class UserServlet extends HttpServlet {
          * 接收地址栏的op参数
          */
         String op = request.getParameter("op");
-
         switch (op) {
             case "login":
                 login(request, response);
@@ -132,9 +131,6 @@ public class UserServlet extends HttpServlet {
             case "logout":
                 logout(request, response);
                 break;
-
         }
-
     }
-
 }

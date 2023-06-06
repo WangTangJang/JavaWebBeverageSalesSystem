@@ -23,7 +23,6 @@ public class NewsDAOImpl implements NewsDAO {
     public static void main(String[] args) {
 
         NewsDAOImpl daoImpl = new NewsDAOImpl();
-
         /*
          * News enBuyNews=new News(); enBuyNews.setTitle("今天小雨");
          * enBuyNews.setContent("今天有点冷...");
