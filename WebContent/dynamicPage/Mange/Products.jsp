@@ -51,8 +51,8 @@
                     <td>${n.categoryLevel1Id}</td>
                     <td>${n.categoryLevel2Id}</td>
                     <td>${n.fileName}</td>
-                    <td class="w1 c"><a href="NewsServlet?op=findProductById&id=${n.id}">修改</a> <a
-                            class="manageDel2" href="NewsServlet?op=delNews&id=${n.id}">删除</a></td>
+                    <td class="w1 c"><a href="ProductServlet?op=findProductById&id=${n.id}">修改</a> <a
+                            class="manageDel2" href="ProductServlet?op=delProduct&id=${n.id}">删除</a></td>
                 </tr>
             </c:forEach>
 

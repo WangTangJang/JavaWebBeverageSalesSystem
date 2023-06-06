@@ -67,6 +67,7 @@ public class ProductServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
+        String id = request.getParameter("id");
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String price = request.getParameter("price");
@@ -87,6 +88,7 @@ public class ProductServlet extends HttpServlet {
         product.setCategoryLevel3Id(categoryLevel3Id);
         product.setFileName(fileName);
         product.setIsDelete(isDelete);
+        product.setId(Integer.parseInt(id));
         try {
             int r = productDAO.modifyProduct(product);
             if (r > 0) {

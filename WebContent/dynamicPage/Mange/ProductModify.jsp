@@ -27,18 +27,38 @@
 </div>
 <!-- 主要内容 -->
 <div class="content">
-    <h2>修改新闻</h2>
+    <h2>修改饮品</h2>
     <div class="manage">
-        <form action="/BeverageSalesSystem/ProductServlet?op=modifyNews" method="post">
-            <input type="hidden" name="id"  value="${ep.id}"/>
+        <form action="/BeverageSalesSystem/ProductServlet?op=modifyProduct" method="post">
+            <input type="hidden" name="id"  value="${product.id}"/>
             <table class="form">
                 <tr>
                     <td class="field">饮品名称：</td>
-                    <td><input type="text" class="name" name="name" value="${ep.name}" /></td>
+                    <td><input type="text" class="name" name="name" value="${product.name}" /></td>
                 </tr>
                 <tr>
-                    <td class="field">新闻内容：</td>
-                    <td><textarea name="content">${en.content}</textarea></td>
+                    <td class="field">饮品描述：</td>
+                    <td><textarea name="description">${product.description}</textarea></td>
+                </tr>
+                <tr>
+                    <td class="field">饮品价格：</td>
+                    <td><input type="text" class="price" name="price" value="${product.price}" /></td>
+                </tr>
+                <tr>
+                    <td class="field">饮品库存：</td>
+                    <td><input type="text" class="stock" name="stock" value="${product.stock}" /></td>
+                </tr>
+                <tr>
+                    <td class="field">饮品一级分类：</td>
+                    <td><input type="text" class="categoryLevel1Id" name="categoryLevel1Id" value="${product.categoryLevel1Id}" /></td>
+                </tr>
+                <tr>
+                    <td class="field">饮品二级分类：</td>
+                    <td><input type="text" class="categoryLevel2Id" name="categoryLevel2Id" value="${product.categoryLevel2Id}" /></td>
+                </tr>
+                <tr>
+                    <td class="field">饮品图片：</td>
+                    <td><input type="text" class="fileName" name="fileName" value="${product.fileName}" /></td>
                 </tr>
                 <tr>
                     <td></td>

@@ -7,43 +7,43 @@ package com.beverage.model;
  */
 public class Product {
     /**
-     * 商品编号
+     * 饮品编号
      */
     private int id;
     /**
-     * 商品名称
+     * 饮品名称
      */
     private String name;
     /**
-     * 商品描述
+     * 饮品描述
      */
     private String description;
     /**
-     * 商品价格
+     * 饮品价格
      */
     private float price;
     /**
-     * 商品库存
+     * 饮品库存
      */
     private int stock;
     /**
-     * 商品一级分类
+     * 饮品一级分类
      */
     private int categoryLevel1Id;
     /**
-     * 商品二级分类
+     * 饮品二级分类
      */
     private int categoryLevel2Id;
     /**
-     * 商品三级分类
+     * 饮品三级分类
      */
     private int categoryLevel3Id;
     /**
-     * 商品图片
+     * 饮品图片
      */
     private String fileName;
     /**
-     * 商品删除状态(0 正常 1 已删除)
+     * 饮品删除状态(0 正常 1 已删除)
      */
     private int isDelete;
     @Override

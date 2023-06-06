@@ -54,11 +54,10 @@ public class ProductDAOImpl implements ProductDAO {
         return r;
     }
     @Override
-    public int modifyProduct(Product ep) throws Exception {
+    public int modifyProduct(Product product) throws Exception {
         int r = -1;
-
         String sql = "update  product set name=?,description=?,price=?,stock=?,categoryLevel1Id=?,categoryLevel2Id=?,categoryLevel3Id=?,fileName=?,isDelete=? where id=?";
-        Object[] param = {ep.getName(), ep.getDescription(), ep.getPrice(), ep.getStock(), ep.getCategoryLevel1Id(), ep.getCategoryLevel2Id(), ep.getCategoryLevel3Id(), ep.getFileName(), ep.getIsDelete(), ep.getId()};
+        Object[] param = {product.getName(), product.getDescription(), product.getPrice(), product.getStock(), product.getCategoryLevel1Id(), product.getCategoryLevel2Id(), product.getCategoryLevel3Id(), product.getFileName(), product.getIsDelete(), product.getId()};
 
         r = bd.executeUpdate(sql, param);
 
