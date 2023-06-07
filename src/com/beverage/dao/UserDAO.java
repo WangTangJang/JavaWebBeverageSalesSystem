@@ -1,6 +1,10 @@
 package com.beverage.dao;
 
+import com.beverage.model.News;
 import com.beverage.model.User;
+
+import java.util.List;
+
 /**
  * 用户数据访问层接口
  */
@@ -22,5 +26,9 @@ public interface UserDAO {
      * @throws Exception 登录过程中发生的异常
      */
     public User login(String loginName, String password) throws Exception;
+    public int delUser(int id) throws Exception;
+    public List<User> findAll()throws Exception;
+    public int modifyUser(User user) throws Exception;
+    public User findUserById(int id) throws Exception;
 }
 

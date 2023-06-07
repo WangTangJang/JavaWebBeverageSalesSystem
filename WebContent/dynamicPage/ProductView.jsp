@@ -47,7 +47,7 @@
     <br><br>
     ${ep.description}
     <br><br><br><br><br>
-    现在快加入购物车吧！！<input type="button" value="加入">
+    现在快加入购物车吧！！<input type="button" value="加入" onclick="window.location.href='ShoppingServlet?op=addShopping&productId=${ep.id}'">
   </div>
 </div>
 <footer class="footer">

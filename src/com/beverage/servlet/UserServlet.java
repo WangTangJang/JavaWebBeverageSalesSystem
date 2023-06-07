@@ -1,10 +1,12 @@
 package com.beverage.servlet;
 
 import com.beverage.dao.impl.UserDAOImpl;
+import com.beverage.model.News;
 import com.beverage.model.User;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +41,6 @@ public class UserServlet extends HttpServlet {
         String loginName = request.getParameter("username");
 
         String password = request.getParameter("password");
-
         /**
          * 调用用户业务逻辑层登录方法
          */
@@ -101,17 +102,86 @@ public class UserServlet extends HttpServlet {
         }
 
     }
+    protected void findAll(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            List<User> list = userDao.findAll();
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("dynamicPage/Mange/Users.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    protected void delUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        String idString = request.getParameter("id");
+        try {
+            int r = userDao.delUser(Integer.parseInt(idString));
+            if (r > 0) {
+                out.print("<script>alert('删除成功');location.href='UserServlet?op=findAll';</script>");
+            } else {
+                out.print("<script>alert('删除失败');location.href='UserServlet?op=findAll';</script>");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            out.print("<script>alert('删除失败');location.href='UserServlet?op=findAll';</script>");
+        }
+    }
+    protected void modifyUser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String fullName = request.getParameter("fullName");
+        String address = request.getParameter("address");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String id = request.getParameter("id");
 
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setFullName(fullName);
+        user.setAddress(address);
+        user.setPhoneNumber(phoneNumber);
+        user.setId(Integer.parseInt(id));
+        try {
+            int r = userDao.modifyUser(user);
+            if (r > 0) {
+                out.print("<script>alert('修改成功');location.href='UserServlet?op=findAll';</script>");
+            } else {
+                out.print("<script>alert('修改失败');location.href='UserServlet?op=findAll';</script>");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    protected void findUserById(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("id");
+        try {
+            User user = userDao.findUserById(Integer.parseInt(id));
+            request.setAttribute("user", user);
+            request.getRequestDispatcher("/dynamicPage/Mange/UsersModify.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         doPost(request, response);
-        response.sendRedirect("login.jsp");
+//        response.sendRedirect("login.jsp");
     }
-
     protected void logout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getSession().invalidate();
+        response.sendRedirect("IndexServlet");
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -130,6 +200,18 @@ public class UserServlet extends HttpServlet {
                 break;
             case "logout":
                 logout(request, response);
+                break;
+            case "findAll":
+                findAll(request, response);
+                break;
+            case "delUser":
+                delUser(request, response);
+                break;
+            case "modifyUser":
+                modifyUser(request, response);
+                break;
+            case "findUserById":
+                findUserById(request, response);
                 break;
         }
     }
