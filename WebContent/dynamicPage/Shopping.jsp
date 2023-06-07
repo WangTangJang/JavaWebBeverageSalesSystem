@@ -24,8 +24,9 @@
 </div>
 <!-- 公告栏 -->
 <div class="sidebarRight">
-    <%@include file="NewsSidebar.jsp"%>
+<%--    <%@include file="NewsSidebar.jsp"%>--%>
 </div>
+
 <!-- 侧边栏 -->
 <div class="sidebar">
     <ul>
@@ -59,7 +60,9 @@
                     <tr name="mytr" id="product_id_${i.index}">
                         <input type="hidden" name="product_id_${i.index}" value="${s.productid}" />
                         <input type="hidden" name="number_id_${i.index}" value="${s.number}" />
-                        <td class="thumb"><img src="images/product/${s.fileName}" /><a
+                        <td class="thumb">
+<%--                            <img src="images/product/${s.fileName}" />--%>
+                            <a
                                 href="product-view.html">${s.name}</a></td>
                         <td class="price" id="price_id_${i.index}"><span>￥${s.price}</span>
                             <input type="hidden" value="${s.price} }" /></td>

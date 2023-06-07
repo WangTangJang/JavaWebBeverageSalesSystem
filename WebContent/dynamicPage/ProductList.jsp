@@ -45,7 +45,9 @@
     <c:forEach items="${requestScope.listProduct}" var="p" end="100">
         <div class="drink-card">
             <a href="ProductServlet?op=productview&id=${p.id}"
-               target="_self"><img src="images/product/${p.fileName}" /></a>
+               target="_self">
+<%--                <img src="images/product/${p.fileName}" />--%>
+            </a>
             <h3>
                 <a href="ProductServlet?op=productview&id=${p.id}"
                    target="_self">  ${p.name}</a>

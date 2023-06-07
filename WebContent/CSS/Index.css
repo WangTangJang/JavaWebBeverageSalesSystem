@@ -85,10 +85,10 @@ body {
 .drink-card {
     position: relative;
     width: 200px;
-    height: 300px;
+    height: 100px;
     margin: 20px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #d2ffc7;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;

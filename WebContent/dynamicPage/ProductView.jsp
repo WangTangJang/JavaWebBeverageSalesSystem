@@ -41,7 +41,7 @@
 </div>
 <!-- 主要内容 -->
 <div class="content" align="center">
-  <img src="${ep.fileName}" />
+<%--  <img src="${ep.fileName}" />--%>
 
   <div>
     <br><br>
