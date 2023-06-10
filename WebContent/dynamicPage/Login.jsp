@@ -7,12 +7,14 @@
     <title>甜品销售系统</title>
     <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/CSS/Login.css" />
 </head>
-<% String error = (String) request.getAttribute("ERROR"); %>
+<% String error = (String) request.getSession().getAttribute("ERROR"); %>
 <% if (error != null) { %>
 <script>
     alert("<%= error %>");
 </script>
-<% } %>
+<%
+        request.getSession().removeAttribute("ERROR");
+}%>
 <body>
 <canvas id="stars"></canvas>
 
@@ -33,5 +35,6 @@
         </div>
     </form>
 </div>
+<script type="text/javascript" src="<%= request.getContextPath() %>/JavaScript/Login.js"></script>
 </body>
 </html>

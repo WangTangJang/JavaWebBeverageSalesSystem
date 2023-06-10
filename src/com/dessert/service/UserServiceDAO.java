@@ -1,13 +1,12 @@
-package com.dessert.dao;
+package com.dessert.service;
 
 import com.dessert.model.User;
-
 
 
 /**
  * 用户数据访问层接口
  */
-public interface UserDAO {
+public interface UserServiceDAO {
     /**
      * 用户注册
      * @param user 用户对象，包含注册所需的用户信息

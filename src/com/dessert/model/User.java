@@ -5,30 +5,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String fullName;
-    private String address;
-    private String phoneNumber;
-    private String type;
-    private boolean active;
 
-    // 构造方法（可以根据需要自定义）
-
-    public User() {
-    }
-
-    public User(int id, String username, String password, String email, String fullName, String address, String phoneNumber, String type, boolean active) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.fullName = fullName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.type = type;
-        this.active = active;
-    }
-
-    // Getter 和 Setter 方法（根据需要生成）
 
     public int getId() {
         return id;
@@ -62,43 +39,16 @@ public class User {
         this.email = email;
     }
 
-    public String getFullName() {
-        return fullName;
+    public User() {
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

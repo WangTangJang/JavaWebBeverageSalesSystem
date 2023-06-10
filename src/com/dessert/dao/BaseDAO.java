@@ -19,7 +19,7 @@ public class BaseDAO {
         Connection conn;
         String JDBC_DRIVER = "com.mysql.jdbc.Driver";
         Class.forName(JDBC_DRIVER);
-        String DB_URL = "jdbc:mysql://localhost:3306/beverage?useUnicode=true&characterEncoding=utf-8";
+        String DB_URL = "jdbc:mysql://localhost:3306/dessertDatabase?useUnicode=true&characterEncoding=utf-8";
         String DB_USER = "root";
         String DB_PASSWORD = "20020525";
         conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
