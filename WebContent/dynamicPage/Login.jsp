@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2023/6/6
-  Time: 15:07
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Starry Login</title>
+    <title>甜品销售系统</title>
     <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/CSS/Login.css" />
 </head>
 <% String error = (String) request.getAttribute("ERROR"); %>
@@ -41,4 +35,3 @@
 </div>
 </body>
 </html>
-
