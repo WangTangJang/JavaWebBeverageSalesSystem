@@ -24,7 +24,7 @@
 
 <div class="login-container">
     <h1>登录</h1>
-    <form method="post" action="/BeverageSalesSystem/UserServlet?op=login">
+    <form method="post" action="<%= request.getContextPath() %>/UserServlet?op=login">
         <div class="form-group">
             <label for="username">用户名称</label>
             <input type="text" id="username" name="username" placeholder="Enter your username">
@@ -39,7 +39,6 @@
         </div>
     </form>
 </div>
-<script type="text/javascript" src="<%= request.getContextPath() %>/JavaScript/Login.js"></script>
 </body>
 </html>
 
