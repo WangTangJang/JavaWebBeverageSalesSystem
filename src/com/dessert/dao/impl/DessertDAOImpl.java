@@ -87,11 +87,11 @@ public class DessertDAOImpl implements DessertDAO {
         return dessert;
     }
     @Override
-    public DessertPage findDessertsByPage(int pageNum, int pageSize) throws Exception {
+    public DessertPage findDessertsByPage(String where,int pageNum, int pageSize) throws Exception {
         int offset = (pageNum - 1) * pageSize; // 计算偏移量
         Connection conn = baseDAO.getConnection();
         // 使用合适的查询语句从数据库中获取分页数据
-        String sql = "SELECT * FROM dessertinfo LIMIT ?, ?";
+        String sql = "SELECT * FROM dessertinfo where 1=1"+where+" LIMIT ?, ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setInt(1, offset);
         statement.setInt(2, pageSize);
@@ -110,7 +110,7 @@ public class DessertDAOImpl implements DessertDAO {
             dessert.setStock(rs.getInt("stock"));
             dessertList.add(dessert);
         }
-        sql = "SELECT COUNT(*) AS total FROM DessertInfo";
+        sql = "SELECT COUNT(*) AS total FROM DessertInfo WHERE 1=1"+where+"";
         statement = conn.prepareStatement(sql);
         rs = statement.executeQuery();
         int totalRecords = 0;

@@ -27,7 +27,6 @@
     dot.style.opacity = '0';
 });
 });
-
     // 显示公告栏
     const announcement = document.querySelector('.announcement');
     announcement.classList.add('visible');

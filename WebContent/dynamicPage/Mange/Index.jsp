@@ -52,45 +52,46 @@
             </c:forEach>
         </table>
     </div>
-</div>
-<div class="pagination">
-
-    <c:choose>
-        <c:when test="${currentPage!=1}">
-            <a href="DessertServlet?op=findDessertByPage&page=1">首页</a>
-        </c:when>
-        <c:otherwise>
-            <span class="disabled">首页</span>
-        </c:otherwise>
-    </c:choose>
-    <c:choose>
-        <c:when test="${currentPage > 1}">
-            <a href="DessertServlet?op=findDessertByPage&page=${currentPage - 1}">上一页</a>
-        </c:when>
-        <c:otherwise>
-            <span class="disabled">上一页</span>
-        </c:otherwise>
-    </c:choose>
-    <c:forEach begin="1" end="${totalPage}" varStatus="status">
+    <div class="pagination">
         <c:choose>
-            <c:when test="${status.index + 1 == currentPage}">
-                <span class="current-page">${status.index + 1}</span>
+            <c:when test="${currentPage!=1}">
+                <a href="DessertServlet?op=findDessertByPage&page=1&keyword=${keyword}&property=${property}">首页</a>
             </c:when>
             <c:otherwise>
-                <a href="DessertServlet?op=findDessertByPage&page=${status.index + 1}">${status.index + 1}</a>
+                <span class="disabled">首页</span>
             </c:otherwise>
         </c:choose>
-    </c:forEach>
-    <c:choose>
-        <c:when test="${currentPage < totalPage}">
-            <a href="DessertServlet?op=findDessertByPage&page=${currentPage + 1}">下一页</a>
-        </c:when>
-        <c:otherwise>
-            <span class="disabled">下一页</span>
-        </c:otherwise>
-    </c:choose>
-</div>
+        <c:choose>
+            <c:when test="${currentPage > 1}">
+                <a href="DessertServlet?op=findDessertByPage&page=${currentPage - 1}&keyword=${keyword}&property=${property}">上一页</a>
+            </c:when>
+            <c:otherwise>
+                <span class="disabled">上一页</span>
+            </c:otherwise>
+        </c:choose>
+        <c:if test="${totalPage > 0}">
+            <c:forEach begin="1" end="${totalPage-1}" varStatus="status">
+                <c:choose>
+                    <c:when test="${status.index + 1 == currentPage}">
+                        <span class="current-page">${status.index + 1}</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="DessertServlet?op=findDessertByPage&page=${status.index + 1}&keyword=${keyword}&property=${property}">${status.index + 1}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </c:if>
 
+        <c:choose>
+            <c:when test="${currentPage < totalPage}">
+                <a href="DessertServlet?op=findDessertByPage&page=${currentPage + 1}&keyword=${keyword}&property=${property}">下一页</a>
+            </c:when>
+            <c:otherwise>
+                <span class="disabled">下一页</span>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</div>
 <footer class="footer">
     <%@include file="Includes/footer.jsp"%>
 </footer>

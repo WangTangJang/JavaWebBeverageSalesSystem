@@ -30,6 +30,13 @@
             <input type="password" id="password" name="password" placeholder="Enter your password">
         </div>
         <div class="form-group">
+            <label for="checkCode">验证码</label>
+            <input type="text" id="checkCode" name="checkCode" placeholder="checkCode" value="">
+        </div>
+        <div class="form-group">
+            <img src="CheckCode" alt="验证码">
+        </div>
+        <div class="form-group">
             <input type="submit" value="登录">
             <input type="button" id="register-btn" value="去注册" onclick="goToRegisterPage()">
         </div>

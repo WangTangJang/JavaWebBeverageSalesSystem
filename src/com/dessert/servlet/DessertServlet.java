@@ -25,7 +25,6 @@ public class DessertServlet extends HttpServlet {
      * 引入产品业务逻辑层
      */
     DessertServiceDAOImpl dessertDAO = new DessertServiceDAOImpl();
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
@@ -45,12 +44,23 @@ public class DessertServlet extends HttpServlet {
             case "delDessert" ->delDessert(request,response);
         }
     }
-
     private void findDessertByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int currentPage =1;
         int pageSize =8;
         int totalPage = 0;
         int totalCount=0;
+
+        String where = "";
+        String  keyword = request.getParameter("keyword");
+        String property = request.getParameter("property");
+        if (keyword != null && !keyword.equals("")) {
+            //加上按姓名筛选的SQL条件(模糊查询)
+            where += " and "+property+" like '%" + keyword + "%'";
+            //在request域对象中存入姓名，便于前端获取展示
+            request.setAttribute("keyword", keyword);
+            request.setAttribute("property", property);
+        }
+
         // 从请求参数中获取当前页码
         String pageParam = request.getParameter("page");
         if (pageParam != null && !pageParam.isEmpty()) {
@@ -59,7 +69,7 @@ public class DessertServlet extends HttpServlet {
         List<Dessert> dessertList = null;
         DessertPage dessertPage = null;
         try {
-            dessertPage = dessertDAO.findDessertsByPage(currentPage, pageSize);
+            dessertPage = dessertDAO.findDessertsByPage(where,currentPage, pageSize);
             dessertList = dessertPage.getDessertList();
             totalCount = dessertPage.getTotalRecords();
         } catch (Exception e) {
@@ -181,7 +191,6 @@ public class DessertServlet extends HttpServlet {
             out.print("<script>alert('删除失败');location.href='DessertServlet?op=findAll';</script>");
         }
     }
-
     protected void findAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {

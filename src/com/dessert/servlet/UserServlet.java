@@ -24,20 +24,29 @@ public class UserServlet extends HttpServlet {
      */
     protected void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String loginName = request.getParameter("username");
-        String password = request.getParameter("password");
-        try {
-            User user = userDao.login(loginName, password);
-            if (user == null) {
-                request.getSession().setAttribute("ERROR", "Error:用户名或者密码错误");
-                response.sendRedirect("LoginServlet");
-            } else {
-                request.getSession().setAttribute("USERS", user);
-                response.sendRedirect("DessertServlet?op=findAll");
+
+        String code = request.getParameter("checkCode");
+        String sCode = (String) request.getSession().getAttribute("sCode");
+        if(code.equals(sCode)){
+            String loginName = request.getParameter("username");
+            String password = request.getParameter("password");
+            try {
+                User user = userDao.login(loginName, password);
+                if (user == null) {
+                    request.getSession().setAttribute("ERROR", "Error:用户名或者密码错误");
+                    response.sendRedirect("LoginServlet");
+                } else {
+                    request.getSession().setAttribute("USERS", user);
+                    response.sendRedirect("DessertServlet?op=findAll");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        }else{
+            request.getSession().setAttribute("ERROR", "验证码错误");
+            response.sendRedirect("LoginServlet");
         }
+
     }
     /**
      * 注册
@@ -50,6 +59,8 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
+
+
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);

@@ -54,6 +54,6 @@ public interface DessertServiceDAO {
      * @return 甜品列表
      * @throws Exception 查询过程中发生的异常
      */
-    public DessertPage findDessertsByPage(int pageNum, int pageSize) throws Exception;
+    public DessertPage findDessertsByPage(String where,int pageNum, int pageSize) throws Exception;
 
 }

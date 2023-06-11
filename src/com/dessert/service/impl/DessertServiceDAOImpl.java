@@ -49,7 +49,7 @@ public class DessertServiceDAOImpl implements DessertDAO {
     }
 
     @Override
-    public DessertPage findDessertsByPage(int pageNum, int pageSize) throws Exception {
-        return dessertDAO.findDessertsByPage(pageNum,pageSize);
+    public DessertPage findDessertsByPage(String where,int pageNum, int pageSize) throws Exception {
+        return dessertDAO.findDessertsByPage(where,pageNum,pageSize);
     }
 }

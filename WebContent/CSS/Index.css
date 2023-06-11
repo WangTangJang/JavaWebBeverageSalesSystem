@@ -150,3 +150,7 @@ body {
     text-align: center; /* 设置内容居中（可选） */
     width: 100%; /* 设置宽度，根据需要调整 */
 }
+.pagination{
+    font-size: larger;
+    margin: 0 auto;
+}
