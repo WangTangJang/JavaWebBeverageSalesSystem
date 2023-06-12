@@ -1,0 +1,178 @@
+
+    /* 全局样式 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+/* 导航栏样式 */
+.navbar {
+    background-color: #333;
+    padding: 10px;
+    color: #fff;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+
+}
+.navbar a:hover {
+    transform: scale(1.2);
+}
+/* 侧边栏样式 */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+    float: left;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding-left: 20px;
+    position: relative;
+}
+
+.sidebar a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar ul ul {
+    margin-left: 20px;
+    display: none;
+}
+
+.sidebar ul li.active > ul {
+    display: block;
+}
+
+/* 主要内容样式 */
+.content {
+    margin-left: 220px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.drink-card {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+    padding: 10px;
+    background-color: #d2ffc7;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.drink-card:hover {
+    transform: scale(1.1);
+}
+
+.drink-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.drink-card h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* 公告栏样式 */
+.sidebarRight {
+    width: 230px;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+    float: right;
+}
+.announcement {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+
+    margin-bottom: 20px;
+    text-align: center;
+}
+.announcement a{
+    color: #fff;
+}
+.announcement-buttons {
+    margin-top: 10px;
+}
+
+.arrow-button {
+    font-size: 20px;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.left-button {
+    margin-right: 10px;
+}
+
+.right-button {
+    margin-left: 10px;
+}
+/* 底部栏 */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 响应式布局 */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
