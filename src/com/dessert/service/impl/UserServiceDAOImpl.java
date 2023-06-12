@@ -11,7 +11,7 @@ public class UserServiceDAOImpl implements UserServiceDAO {
     public int register(User user) throws Exception {
         int i;
         i= userDAO.register(user);
-        return 0;
+        return i;
     }
 
     @Override

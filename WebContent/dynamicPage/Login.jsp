@@ -34,8 +34,16 @@
             <input type="text" id="checkCode" name="checkCode" placeholder="checkCode" value="">
         </div>
         <div class="form-group">
-            <img src="CheckCode" alt="验证码">
+            <img id="checkCodeImage" src="CheckCode" alt="验证码" onclick="changeCheckCode()">
         </div>
+
+        <script>
+            function changeCheckCode() {
+                var image = document.getElementById('checkCodeImage');
+                var timestamp = new Date().getTime(); // 获取当前时间戳
+                image.src = 'CheckCode?' + timestamp; // 修改src属性，添加时间戳参数
+            }
+        </script>
         <div class="form-group">
             <input type="submit" value="登录">
             <input type="button" id="register-btn" value="去注册" onclick="goToRegisterPage()">

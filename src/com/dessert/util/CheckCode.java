@@ -62,7 +62,6 @@ public class CheckCode extends HttpServlet {
             g.drawString(ch, x, 25);
             //下一个字符距离上一个字符的左边是20
             x += 20;
-
             //把随机生成的一个字符加入验证码字符串中
             scode+=ch;
         }

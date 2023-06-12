@@ -1,14 +1,44 @@
 package com.dessert.dao;
 
+import org.apache.taglibs.standard.tag.common.sql.DataSourceUtil;
+
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Properties;
 
 /**
  * 数据库连接工具类
  */
 public class BaseDAO {
+
+    private static String driver;
+    private static String url;
+    private static String user;
+    private static String password;
+    static {
+        init();
+    }
+
+    private static void init(){
+        Properties properties = new Properties();
+        String configFile = "/com/dessert/util/database.properties";
+        InputStream is = DataSourceUtil.class.getClassLoader().getResourceAsStream(configFile);
+        try {
+            properties.load(is);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        driver = properties.getProperty("driver");
+        url = properties.getProperty("url");
+        user = properties.getProperty("username");
+        password = properties.getProperty("password");
+    }
 
     /**
      * 获取数据库连接
@@ -17,15 +47,10 @@ public class BaseDAO {
      */
     public Connection getConnection() throws Exception {
         Connection conn;
-        String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        Class.forName(JDBC_DRIVER);
-        String DB_URL = "jdbc:mysql://localhost:3306/dessertDatabase?useUnicode=true&characterEncoding=utf-8";
-        String DB_USER = "root";
-        String DB_PASSWORD = "20020525";
-        conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        Class.forName(driver);
+        conn = DriverManager.getConnection(url, user, password);
         return conn;
     }
-
     /**
      * 关闭数据库连接和相关资源
      * @param rs 结果集对象

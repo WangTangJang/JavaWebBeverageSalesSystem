@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
     /**
@@ -37,7 +36,7 @@ public class UserServlet extends HttpServlet {
                     response.sendRedirect("LoginServlet");
                 } else {
                     request.getSession().setAttribute("USERS", user);
-                    response.sendRedirect("DessertServlet?op=findAll");
+                    response.sendRedirect("DessertServlet?op=findDessertByPage");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
