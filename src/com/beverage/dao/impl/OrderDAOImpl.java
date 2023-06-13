@@ -11,47 +11,44 @@ import java.util.List;
 import com.beverage.dao.BaseDAO;
 import com.beverage.dao.OrderDAO;
 import com.beverage.model.Order;
-import com.beverage.model.User;
 
 public class OrderDAOImpl implements OrderDAO {
 
     BaseDAO bd = new BaseDAO();
 
+    /**
+     * 插入订单
+     * @param order 订单实体
+     * @return 插入结果
+     * @throws Exception 如果插入订单时发生异常
+     */
     @Override
     public int addOrder(Order order) throws Exception {
-        int r = -1;
-        try {
-            String sql = "insert into orders(id,userId,loginName,userAddress,createTime,cost,serialNumber)values(?,?,?,?,?,?,?)";
-            Object[] param = {order.getId(), order.getUserId(), order.getLoginName(), order.getUserAddress(), new Date(), order.getCost(),
-                    order.getSerialNumber() };
-            r = bd.executeUpdate(sql, param);
-        } catch (Exception e) {
-            throw e;
-        }
-
+        int r;
+        String sql = "insert into orders(id,userId,loginName,userAddress,createTime,cost,serialNumber)values(?,?,?,?,?,?,?)";
+        Object[] param = {order.getId(), order.getUserId(), order.getLoginName(), order.getUserAddress(), new Date(), order.getCost(),
+                order.getSerialNumber() };
+        r = bd.executeUpdate(sql, param);
         return r;
     }
     public Order findOrderById(int id) throws Exception {
         Order order = new Order();
-        try {
-            Connection conn = bd.getConnection();
-            String sql = "select * from orders where id=?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setObject(1, id);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                order.setId(resultSet.getInt("id"));
-                order.setUserId(resultSet.getInt("userId"));
-                order.setLoginName(resultSet.getString("loginName"));
-                order.setUserAddress(resultSet.getString("userAddress"));
-                order.setCreateTime(resultSet.getDate("createTime"));
-                order.setCost(resultSet.getFloat("cost"));
-                order.setSerialNumber(resultSet.getString("serialNumber"));
-            }
-            bd.closeConnection(resultSet, ps, conn);
-        } catch (Exception e) {
-            throw e;
+        Connection conn = bd.getConnection();
+        String sql = "select * from orders where id=?";
+        sql = "select * from product where id=?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setObject(1, id);
+        ResultSet resultSet = ps.executeQuery();
+        while (resultSet.next()) {
+            order.setId(resultSet.getInt("id"));
+            order.setUserId(resultSet.getInt("userId"));
+            order.setLoginName(resultSet.getString("loginName"));
+            order.setUserAddress(resultSet.getString("userAddress"));
+            order.setCreateTime(resultSet.getDate("createTime"));
+            order.setCost(resultSet.getFloat("cost"));
+            order.setSerialNumber(resultSet.getString("serialNumber"));
         }
+        bd.closeConnection(resultSet, ps, conn);
         return order;
     }
     @Override

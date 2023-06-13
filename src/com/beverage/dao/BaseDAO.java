@@ -25,7 +25,6 @@ public class BaseDAO {
         conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
         return conn;
     }
-
     /**
      * 关闭数据库连接和相关资源
      * @param rs 结果集对象
