@@ -21,31 +21,31 @@
     <form method="post" action="/BeverageSalesSystem/UserServlet?op=register" >
         <div class="form-group">
             <label for="username">输入昵称:</label>
-            <input type="text" id="username" name="username" placeholder="输入昵称" required>
+            <input type="text" id="username" name="username"  required>
         </div>
         <div class="form-group">
             <label for="password">输入密码:</label>
-            <input type="password" id="password"  name="password" placeholder="输入密码" required>
+            <input type="password" id="password"  name="password"  required>
         </div>
         <div class="form-group">
             <label for="confirm-password">确认密码:</label>
-            <input type="password" id="confirm-password" placeholder="确认密码" required>
+            <input type="password" id="confirm-password"  required>
         </div>
         <div class="form-group">
             <label for="email">输入邮箱:</label>
-            <input type="email" id="email"  name="email" placeholder="输入邮箱号" required>
+            <input type="email" id="email"  name="email"  required>
         </div>
         <div class="form-group">
             <label for="fullName">用户全称:</label>
-            <input type="fullName" id="fullName"  name="fullName" placeholder="输入用户全称" required>
+            <input type="fullName" id="fullName"  name="fullName"  required>
         </div>
         <div class="form-group">
             <label for="address">输入地址:</label>
-            <input type="address" id="address"  name="address" placeholder="输入地址" required>
+            <input type="address" id="address"  name="address"  required>
         </div>
         <div class="form-group">
             <label for="phoneNumber">输入手机:</label>
-            <input type="phoneNumber" id="phoneNumber"  name="phoneNumber" placeholder="输入手机号" required>
+            <input type="phoneNumber" id="phoneNumber"  name="phoneNumber"  required>
         </div>
         <div class="form-group">
             <input type="submit" value="注册">

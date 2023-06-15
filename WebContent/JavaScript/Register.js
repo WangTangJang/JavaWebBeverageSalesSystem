@@ -1,7 +1,6 @@
 function goToRegisterPage() {
     window.location.href = "/BeverageSalesSystem/dynamicPage/Login.jsp";  // 修改为你的注册页面的路径
 }
-
 const form = document.querySelector('form');
 const nicknameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
@@ -18,14 +17,10 @@ canvas.height = window.innerHeight;
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
-
     const nickname = nicknameInput.value;
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
     const email = emailInput.value;
-    // Perform registration validation and logic here
-    // Example: You can display a success message or show an error notification
-    // based on the registration result.
     if (nickname.trim() === '' || password.trim() === '' || confirmPassword.trim() === '' || email.trim() === '') {
         alert('请填写所有必填信息。');
     } else if (password !== confirmPassword) {
@@ -59,6 +54,7 @@ function Star(x, y, size, speedX, speedY) {
         if (this.y <= 0 || this.y >= canvas.height) {
             this.speedY *= -1;
         }
+        
     };
 }
 

@@ -41,6 +41,7 @@
 </div>
 <!-- 主要内容 -->
 <div class="content">
+<%--    让获取的内容可以分页展示--%>
 
     <c:forEach items="${requestScope.listProduct}" var="p" end="100">
         <div class="drink-card">
@@ -54,11 +55,8 @@
                 <ddclass="price">￥${p.price}</dd>
             </h3>
         </div>
-
     </c:forEach>
-
 </div>
-
 <footer class="footer">
     <div class="footer-content">
         <p>版权所有 &copy; 2023 饮品销售系统</p>

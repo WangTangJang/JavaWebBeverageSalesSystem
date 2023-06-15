@@ -7,7 +7,7 @@ body {
 }
 /* 导航栏样式 */
 .navbar {
-    background-color: #333;
+    background-color: #20b656;
     padding: 10px;
     color: #fff;
     height: 50px;
@@ -152,10 +152,11 @@ body {
 }
 /* 底部栏 */
 .footer {
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0;
     width: 100%;
-    background-color: #333;
+    height: 70px;
+    background-color: #20b656;
     color: #fff;
     padding: 20px;
     text-align: center;

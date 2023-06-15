@@ -14,19 +14,19 @@ function goToRegisterPage() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // form.addEventListener('submit', function (event) {
-    //     event.preventDefault();
-    //
-    //     const username = usernameInput.value;
-    //     const password = passwordInput.value;
-    //
-    //
-    //     if (username === 'admin' && password === 'password') {
-    //         alert('Login successful!');
-    //     } else {
-    //         alert('Invalid username or password. Please try again.');
-    //     }
-    // });
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+
+        if (username === 'admin' && password === 'password') {
+            alert('Login successful!');
+        } else {
+            alert('Invalid username or password. Please try again.');
+        }
+    });
     function Star(x, y, size, speedX, speedY) {
     this.x = x;
     this.y = y;

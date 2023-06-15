@@ -60,7 +60,7 @@ public class IndexServlet extends HttpServlet {
              * 查询产品
              */
             List<Product> listProduct = productDAO.findAll();
-
+            
             request.setAttribute("listProduct", listProduct);
 
             /**

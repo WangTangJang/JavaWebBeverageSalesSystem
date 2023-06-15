@@ -27,11 +27,11 @@
     <form method="post" action="/BeverageSalesSystem/UserServlet?op=login">
         <div class="form-group">
             <label for="username">用户名称</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username">
+            <input type="text" id="username" name="username" placeholder="请输入用户名">
         </div>
         <div class="form-group">
             <label for="password">用户密码</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <input type="password" id="password" name="password" placeholder="请输入密码">
         </div>
         <div class="form-group">
             <input type="submit" value="登录">
