@@ -17,8 +17,9 @@
     <c:choose>
         <c:when test="${sessionScope.USERS.type eq 'admin'}">
             <!-- 管理员登录后的操作 -->
-            欢迎你（管理员）：${sessionScope.USERS.username}
             <a href="dynamicPage/Mange/Index.jsp">后台管理</a>
+
+            <a href="#">欢迎你（管理员）：${sessionScope.USERS.username}</a>
         </c:when>
         <c:otherwise>
             <!-- 非管理员登录后的操作 -->

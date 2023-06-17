@@ -33,7 +33,7 @@
                 <dt>${c1.name}</dt>
                 <c:forEach items="${c1.secondCategroy}" var="c2">
                     <dd>
-                        <a href="ProductServlet?op=findCategory&categoryId=${c2.id}">${c2.name}</a>
+                        <a href="ProductServlet?op=findProductByPage&categoryId=${c2.id}">${c2.name}</a>
                     </dd>
                 </c:forEach>
             </c:forEach>

@@ -88,7 +88,6 @@ public class ProductDAOImpl implements ProductDAO {
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setObject(1, secondCategory);
         ResultSet rs = ps.executeQuery();
-
         while (rs.next()) {
             Product product = new Product();
             createProductFromResultSet(product, rs);
@@ -100,10 +99,10 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> findProductByPage(int page, int pageSize) throws Exception {
+    public List<Product> findProductByPage(String where, int page, int pageSize) throws Exception {
         List<Product> list = new ArrayList<>();
         Connection connection = bd.getConnection();
-        String sql = "select * from product limit ?,?";
+        String sql = "select * from product where 1=1 "+where +" limit ?,?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, (page - 1) * pageSize);
         ps.setInt(2, pageSize);
@@ -113,7 +112,7 @@ public class ProductDAOImpl implements ProductDAO {
             createProductFromResultSet(product, rs);
             list.add(product);
         }
-        String sql1 = "select count(*) count from product";
+        String sql1 = "select count(*) count from product where 1=1 "+where +"";
         PreparedStatement ps1 = connection.prepareStatement(sql1);
         ResultSet rs1 = ps1.executeQuery();
         while (rs1.next()) {

@@ -155,7 +155,6 @@ public class ProductServlet extends HttpServlet {
         String id = request.getParameter("id");
         try {
             Product ep = productDAO.findProductById(Integer.parseInt(id));
-
             request.setAttribute("ep", ep);
             request.getRequestDispatcher("dynamicPage/ProductView.jsp").forward(request, response);
         } catch (Exception e) {
@@ -175,11 +174,29 @@ public class ProductServlet extends HttpServlet {
     protected void findCategory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("categoryId");
+        String pageParameter = request.getParameter("currentPage");
+        int currentPage = 1;
+        int pageSize = 12;
+        int totalPage;
+        String where = "and categoryLevel2Id=" + id + "";
+        if (pageParameter!= null &&!pageParameter.equals("")) {
+            currentPage = Integer.parseInt(pageParameter);
+        }
         try {
-            List<Product> listProduct = productDAO.findProductByCategory(Integer.parseInt(id));
+            List<Product> listProduct = productDAO.findProductByPage(where,currentPage, pageSize);
+            int count = listProduct.get(0).getCount();
+            //根据总数据数以及每页的数据数计算总页数
+            if (count % pageSize == 0) {
+                totalPage = count / pageSize;
+            } else {
+                totalPage = count / pageSize + 1;
+            }
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("totalPage", totalPage);
             request.setAttribute("listProduct", listProduct);
             request.getRequestDispatcher("dynamicPage/ProductList.jsp").forward(request, response);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -187,14 +204,20 @@ public class ProductServlet extends HttpServlet {
         int currentPage = 1;
         int pageSize = 12;
         int totalPage;
+        String where;
+        String id = request.getParameter("categoryId");
         String pageParameter = request.getParameter("currentPage");
+        if (id!=null){
+            where = "and categoryLevel2Id=" + id + "";
+        }else {
+            where = "";
+        }
         if (pageParameter!= null &&!pageParameter.equals("")) {
             currentPage = Integer.parseInt(pageParameter);
         }
         try {
-            List<Product> listProduct = productDAO.findProductByPage(currentPage, pageSize);
-            List<Product> productAll = productDAO.findAll();
-            int count = productAll.size();
+            List<Product> listProduct = productDAO.findProductByPage(where,currentPage, pageSize);
+            int count = listProduct.get(0).getCount();
             //根据总数据数以及每页的数据数计算总页数
             if (count % pageSize == 0) {
                 totalPage = count / pageSize;

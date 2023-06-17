@@ -13,7 +13,7 @@ class ProductDAOImplTest {
     @org.junit.jupiter.api.Test
     void findProductByPage() throws Exception {
         ProductDAOImpl productDAO = new ProductDAOImpl();
-        List<Product> list = productDAO.findProductByPage(1,10);
+        List<Product> list = productDAO.findProductByPage("", 1,10);
         list.forEach(System.out::println);
     }
 }
