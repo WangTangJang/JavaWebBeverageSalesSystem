@@ -56,5 +56,6 @@ public interface ProductDAO {
      * @throws Exception 注册过程中发生的异常
      */
     public List<Product> findProductByCategory(int secondCategory) throws Exception;
+    public List<Product> findProductByPage(int page, int pageSize) throws Exception;
 
 }

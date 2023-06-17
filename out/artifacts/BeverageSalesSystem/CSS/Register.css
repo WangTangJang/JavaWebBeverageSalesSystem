@@ -3,6 +3,8 @@ body {
     padding: 0;
     overflow: hidden;
     background-color: #1b1b1b;
+    font-family: "千图小兔体", monospace;
+    font-size: 25px;
 }
 
 .register-container {
@@ -33,16 +35,15 @@ body {
 }
 
 .form-group input[type="submit"] {
-    background-color: #2ecc71;
-    color: #fff;
+    background-color: #fed62d;
+    color: #000000;
     cursor: pointer;
     margin-right: 10px;
 }
 
 #login-btn {
-    background-color: #3498db;
+    background-color: #00d492;
 }
-
 #stars {
     position: absolute;
     top: 0;

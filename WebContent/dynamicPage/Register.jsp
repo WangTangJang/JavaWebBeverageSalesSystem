@@ -17,7 +17,7 @@
 <canvas id="stars"></canvas>
 
 <div class="register-container">
-    <h1>Registration</h1>
+    <h1>注册</h1>
     <form method="post" action="/BeverageSalesSystem/UserServlet?op=register" >
         <div class="form-group">
             <label for="username">输入昵称:</label>
@@ -49,10 +49,11 @@
         </div>
         <div class="form-group">
             <input type="submit" value="注册">
-            <input type="button" id="login-btn" value="返回登录" onclick="goToRegisterPage()">
+            <input type="button" id="login-btn" value="返回登录" onclick="goToLoginPage()">
         </div>
     </form>
 </div>
+<script type="text/javascript" src="<%= request.getContextPath() %>/JavaScript/Star.js"></script>
 <script type="text/javascript" src="<%= request.getContextPath() %>/JavaScript/Register.js"></script>
 </body>
 </html>

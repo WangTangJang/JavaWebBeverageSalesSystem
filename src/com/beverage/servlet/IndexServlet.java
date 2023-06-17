@@ -8,6 +8,7 @@ import com.beverage.model.Product;
 import com.beverage.model.ProductCategory;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/IndexServlet")
 public class IndexServlet extends HttpServlet {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
@@ -49,32 +51,19 @@ public class IndexServlet extends HttpServlet {
 
         try {
 
-            /**
-             * 查询新闻
-             */
             List<News> listNews = newsDAO.findAll();
 
             request.setAttribute("listNews", listNews);
 
-            /**
-             * 查询产品
-             */
-            List<Product> listProduct = productDAO.findAll();
-            
-            request.setAttribute("listProduct", listProduct);
-
-            /**
-             * 分类信息
-             */
             List<ProductCategory> listCategroy = productCategoryDAO.getCategroyByParnetId(0);
-            ProductCategory productCategory = listCategroy.get(1);
             request.getSession().setAttribute("listCategroy", listCategroy);
-            request.getRequestDispatcher("dynamicPage/Index.jsp").forward(request, response);
+
+            ProductServlet productServlet = new ProductServlet();
+            productServlet.findProductByPage(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }

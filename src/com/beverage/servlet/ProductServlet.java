@@ -1,25 +1,39 @@
 package com.beverage.servlet;
 
 import com.beverage.dao.impl.ProductDAOImpl;
-import com.beverage.model.News;
 import com.beverage.model.Product;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 
 @WebServlet("/ProductServlet")
 public class ProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+
+        String opString = request.getParameter("op");
+        switch (opString) {
+            case "productView" -> productview(request, response);
+            case "findCategory" -> findCategory(request, response);
+            case "addProduct" -> addProduct(request, response);
+            case "modifyProduct" -> modifyProduct(request, response);
+            case "delProduct" -> delProduct(request, response);
+            case "findAll" -> findAll(request, response);
+            case "findProductById" -> findProductById(request, response);
+            case "findProductByPage" -> findProductByPage(request, response);
+        }
+
+    }
     /**
      * 引入产品业务逻辑层
      */
@@ -148,9 +162,7 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    protected void findProductById(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void findProductById(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         try {
             Product product = productDAO.findProductById(Integer.parseInt(id));
@@ -162,48 +174,40 @@ public class ProductServlet extends HttpServlet {
     }
     protected void findCategory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String id = request.getParameter("categoryId");
         try {
             List<Product> listProduct = productDAO.findProductByCategory(Integer.parseInt(id));
-
             request.setAttribute("listProduct", listProduct);
-
             request.getRequestDispatcher("dynamicPage/ProductList.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-
-        String opString = request.getParameter("op");
-        switch (opString) {
-            case "productview":
-                productview(request, response);
-                break;
-            case "findCategory":
-                findCategory(request, response);
-                break;
-            case "addProduct":
-                addProduct(request, response);
-                break;
-            case "modifyProduct":
-                modifyProduct(request, response);
-                break;
-            case "delProduct":
-                delProduct(request, response);
-                break;
-            case "findAll":
-                findAll(request, response);
-                break;
-            case "findProductById":
-                findProductById(request, response);
-                break;
+    protected void findProductByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        int currentPage = 1;
+        int pageSize = 12;
+        int totalPage;
+        String pageParameter = request.getParameter("currentPage");
+        if (pageParameter!= null &&!pageParameter.equals("")) {
+            currentPage = Integer.parseInt(pageParameter);
         }
-
+        try {
+            List<Product> listProduct = productDAO.findProductByPage(currentPage, pageSize);
+            List<Product> productAll = productDAO.findAll();
+            int count = productAll.size();
+            //根据总数据数以及每页的数据数计算总页数
+            if (count % pageSize == 0) {
+                totalPage = count / pageSize;
+            } else {
+                totalPage = count / pageSize + 1;
+            }
+            request.setAttribute("currentPage", currentPage);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("listProduct", listProduct);
+            request.getRequestDispatcher("dynamicPage/ProductList.jsp").forward(request, response);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }

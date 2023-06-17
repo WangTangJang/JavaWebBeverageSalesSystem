@@ -46,12 +46,32 @@ public class Product {
      * 饮品删除状态(0 正常 1 已删除)
      */
     private int isDelete;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    private int count;
+
     @Override
     public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-                + ", stock=" + stock + ", categoryLevel1Id=" + categoryLevel1Id + ", categoryLevel2Id="
-                + categoryLevel2Id + ", categoryLevel3Id=" + categoryLevel3Id + ", fileName=" + fileName + ", isDelete="
-                + isDelete + "]";
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", categoryLevel1Id=" + categoryLevel1Id +
+                ", categoryLevel2Id=" + categoryLevel2Id +
+                ", categoryLevel3Id=" + categoryLevel3Id +
+                ", fileName='" + fileName + '\'' +
+                ", isDelete=" + isDelete +
+                ", count=" + count +
+                '}';
     }
 
 

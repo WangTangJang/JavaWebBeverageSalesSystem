@@ -3,6 +3,8 @@ body {
     padding: 0;
     overflow: hidden;
     background-color: #1b1b1b;
+    font-family: "千图小兔体", monospace;
+    font-size: 25px;
 }
 
 .login-container {

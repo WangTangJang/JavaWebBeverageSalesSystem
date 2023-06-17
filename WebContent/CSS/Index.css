@@ -3,13 +3,14 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: "黑体", monospace;
 }
 /* 导航栏样式 */
 .navbar {
-    background-color: #20b656;
+    background: linear-gradient(to right, #03b442, #50d492);
     padding: 10px;
     color: #fff;
+    font-weight: bold;
     height: 50px;
     display: flex;
     align-items: center;
@@ -19,7 +20,7 @@ body {
     color: #fff;
     text-decoration: none;
     margin: 0 10px;
-
+    font-size: 26px;
 }
 .navbar a:hover {
     transform: scale(1.2);
@@ -78,10 +79,12 @@ body {
 .content {
     margin-left: 220px;
     padding: 20px;
+}
+.product-list{
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
 }
-
 .drink-card {
     position: relative;
     width: 200px;
@@ -93,7 +96,6 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
 }
-
 .drink-card:hover {
     transform: scale(1.1);
 }
@@ -104,13 +106,28 @@ body {
     object-fit: cover;
     border-radius: 10px;
 }
-
+.drink-card a {
+    text-decoration: none;
+    font-size: 25px;
+    color: #128982;
+}
 .drink-card h3 {
     margin-top: 10px;
     font-size: 18px;
     text-align: center;
 }
-
+.pagination{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: black;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
 /* 公告栏样式 */
 .sidebarRight {
     width: 230px;
@@ -152,11 +169,11 @@ body {
 }
 /* 底部栏 */
 .footer {
-    /*position: fixed;*/
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 70px;
-    background-color: #20b656;
+    background: linear-gradient(to right, #20b656, #50d492);
     color: #fff;
     padding: 20px;
     text-align: center;

@@ -25,6 +25,7 @@
 <%--    <%@include file="NewsSidebar.jsp"%>--%>
 <%--</div>--%>
 <!-- 侧边栏 -->
+
 <div class="sidebar">
     <ul>
         <dl>
@@ -41,20 +42,42 @@
 </div>
 <!-- 主要内容 -->
 <div class="content">
-
-    <c:forEach items="${requestScope.listProduct}" var="p" end="100">
-        <div class="drink-card">
-            <a href="ProductServlet?op=productview&id=${p.id}"
-               target="_self">
-<%--                <img src="images/product/${p.fileName}" />--%>
-            </a>
-            <h3>
-                <a href="ProductServlet?op=productview&id=${p.id}"
-                   target="_self">  ${p.name}</a>
-                <ddclass="price">￥${p.price}</dd>
-            </h3>
-        </div>
-    </c:forEach>
+    <div class="product-list">
+        <c:forEach items="${requestScope.listProduct}" var="p" end="100">
+            <div class="drink-card">
+                <a href="ProductServlet?op=productView&id=${p.id}"
+                   target="_self">
+    <%--                <img src="images/product/${p.fileName}" />--%>
+                </a>
+                <h3>
+                    <a href="ProductServlet?op=productView&id=${p.id}"
+                       target="_self">  ${p.name}</a>
+                    <dd class="price">￥${p.price}</dd>
+                </h3>
+            </div>
+        </c:forEach>
+    </div>
+    <div class="pagination">
+        <div style="width: 100%;"></div>
+        <p>当前在第${currentPage}页,共${totalPage}页</p>
+        <div style="width: 100%;"></div>
+        <c:choose>
+            <c:when test="${requestScope.currentPage != 1}">
+                <a href="ProductServlet?op=findProductByPage&currentPage=${requestScope.currentPage - 1}" target="_self">上一页</a>
+            </c:when>
+            <c:otherwise>
+                <span class="disabled">上一页</span>
+            </c:otherwise>
+        </c:choose>
+        <c:choose>
+            <c:when test="${requestScope.currentPage != totalPage }">
+                <a href="ProductServlet?op=findProductByPage&currentPage=${requestScope.currentPage + 1}" target="_self">下一页</a>
+            </c:when>
+            <c:otherwise>
+                <span class="disabled">下一页</span>
+            </c:otherwise>
+        </c:choose>
+    </div>
 </div>
 
 <footer class="footer">
