@@ -11,7 +11,7 @@
     <input type="text" name="productName" placeholder="请输入关键字">
     <input type="submit" value="搜索">
 </form>
-<a href="IndexServlet">首页</a>
+<a href="<%= request.getContextPath() %>/IndexServlet">首页</a>
 <a href="<%= request.getContextPath() %>/ShoppingServlet?op=showShopping">购物车</a>
 
 <c:if test="${sessionScope.USERS eq null}">

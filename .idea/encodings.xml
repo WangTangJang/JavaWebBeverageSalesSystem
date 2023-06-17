@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/com/beverage/dao/ProductDAO.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/beverage/dao/impl/qwe.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/com/beverage/servlet/ProductServlet.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

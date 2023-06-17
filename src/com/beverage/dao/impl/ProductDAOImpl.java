@@ -96,7 +96,9 @@ public class ProductDAOImpl implements ProductDAO {
         PreparedStatement ps1 = connection.prepareStatement(sql1);
         ResultSet rs1 = ps1.executeQuery();
         while (rs1.next()) {
-            list.get(0).setCount(rs1.getInt("count"));
+            if (list.size() != 0) {
+                list.get(0).setCount(rs1.getInt("count"));
+            }
         }
         bd.closeConnection(rs, ps, connection);
         return list;

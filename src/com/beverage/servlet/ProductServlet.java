@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 
+
 @WebServlet("/ProductServlet")
 public class ProductServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -115,6 +116,7 @@ public class ProductServlet extends HttpServlet {
     }
     protected void delProduct(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         String idString = request.getParameter("id");
@@ -141,14 +143,14 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-        /**
-         * 商品详情
-         *
-         * @param request
-         * @param response
-         * @throws ServletException
-         * @throws IOException
-         */
+    /**
+     * 商品详情
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void productview(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
@@ -171,14 +173,18 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    protected void findProductByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    protected void findProductByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         int currentPage = 1;
-        int pageSize = 12;
+        int pageSize = 18;
         int totalPage;
         String where;
         String productName = request.getParameter("productName");
         String categoryId = request.getParameter("categoryId");
         String pageParameter = request.getParameter("currentPage");
+        PrintWriter out = response.getWriter();
         if (categoryId!=null && !categoryId.equals("")){
             where = "and categoryLevel2Id=" + categoryId + "";
         }else {
@@ -192,19 +198,28 @@ public class ProductServlet extends HttpServlet {
         }
         try {
             List<Product> listProduct = productDAO.findProductByPage(where,currentPage, pageSize);
-            int count = listProduct.get(0).getCount();
-            //根据总数据数以及每页的数据数计算总页数
-            if (count % pageSize == 0) {
-                totalPage = count / pageSize;
-            } else {
-                totalPage = count / pageSize + 1;
+            if (listProduct.size() == 0) {
+                System.out.println("你好");
+                out.print("<head>\n" +
+                        "    <meta charset=\"UTF-8\">\n" +
+                        "    <title>你好</title>\n" +
+                        "</head>");
+//                out.print("<script>alert('没有数据');location.href='IndexServlet';</script>");
+            }else {
+                int count = listProduct.get(0).getCount();
+                //根据总数据数以及每页的数据数计算总页数
+                if (count % pageSize == 0) {
+                    totalPage = count / pageSize;
+                } else {
+                    totalPage = count / pageSize + 1;
+                }
+                request.setAttribute("productName",productName);
+                request.setAttribute("categoryId",categoryId);
+                request.setAttribute("currentPage", currentPage);
+                request.setAttribute("totalPage", totalPage);
+                request.setAttribute("listProduct", listProduct);
+                request.getRequestDispatcher("dynamicPage/ProductList.jsp").forward(request, response);
             }
-            request.setAttribute("productName",productName);
-            request.setAttribute("categoryId",categoryId);
-            request.setAttribute("currentPage", currentPage);
-            request.setAttribute("totalPage", totalPage);
-            request.setAttribute("listProduct", listProduct);
-            request.getRequestDispatcher("dynamicPage/ProductList.jsp").forward(request, response);
         }
         catch (Exception e) {
             e.printStackTrace();
