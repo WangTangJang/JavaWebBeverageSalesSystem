@@ -63,7 +63,7 @@
         <div style="width: 100%;"></div>
         <c:choose>
             <c:when test="${requestScope.currentPage != 1}">
-                <a href="ProductServlet?op=findProductByPage&currentPage=${requestScope.currentPage - 1}" target="_self">上一页</a>
+                <a href="ProductServlet?op=findProductByPage&currentPage=${requestScope.currentPage - 1}&categoryId=${categoryId}&productName=${productName}" target="_self">上一页</a>
             </c:when>
             <c:otherwise>
                 <span class="disabled">上一页</span>
@@ -71,7 +71,7 @@
         </c:choose>
         <c:choose>
             <c:when test="${requestScope.currentPage != totalPage }">
-                <a href="ProductServlet?op=findProductByPage&currentPage=${requestScope.currentPage + 1}" target="_self">下一页</a>
+                <a href="ProductServlet?op=findProductByPage&currentPage=${requestScope.currentPage + 1}&categoryId=${categoryId}&productName=${productName}" target="_self">下一页</a>
             </c:when>
             <c:otherwise>
                 <span class="disabled">下一页</span>

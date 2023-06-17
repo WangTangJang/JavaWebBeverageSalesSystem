@@ -50,12 +50,12 @@ public interface ProductDAO {
     public Product findProductById(int id) throws Exception;
 
     /**
-     * 根据分类查询商品
-     * @param secondCategory 第二级分类
-     * @return 商品列表
-     * @throws Exception 注册过程中发生的异常
+     *
+     * @param where 查询语句
+     * @param page 页
+     * @param pageSize 页大小
+     * @return 查询结果集
+     * @throws Exception 查询过程中发生的异常
      */
-    public List<Product> findProductByCategory(int secondCategory) throws Exception;
     public List<Product> findProductByPage(String where, int page, int pageSize) throws Exception;
-
 }

@@ -6,8 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--加一个搜索框--%>
+<form action="<%= request.getContextPath() %>/ProductServlet?op=findProductByPage" method="post">
+    <input type="text" name="productName" placeholder="请输入关键字">
+    <input type="submit" value="搜索">
+</form>
 <a href="IndexServlet">首页</a>
-<a href="/BeverageSalesSystem/ShoppingServlet?op=showShopping">购物车</a>
+<a href="<%= request.getContextPath() %>/ShoppingServlet?op=showShopping">购物车</a>
 
 <c:if test="${sessionScope.USERS eq null}">
     <a href="dynamicPage/Login.jsp">登录</a>
@@ -31,7 +36,7 @@
 <script type="text/javascript">
     function logout() {
         if (confirm("确定要注销吗？")) {
-            location.href='/BeverageSalesSystem/UserServlet?op=logout';
+            location.href='<%= request.getContextPath() %>/UserServlet?op=logout';
         }
     }
 </script>

@@ -24,7 +24,6 @@ public class ProductServlet extends HttpServlet {
         String opString = request.getParameter("op");
         switch (opString) {
             case "productView" -> productview(request, response);
-            case "findCategory" -> findCategory(request, response);
             case "addProduct" -> addProduct(request, response);
             case "modifyProduct" -> modifyProduct(request, response);
             case "delProduct" -> delProduct(request, response);
@@ -171,46 +170,22 @@ public class ProductServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    protected void findCategory(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String id = request.getParameter("categoryId");
-        String pageParameter = request.getParameter("currentPage");
-        int currentPage = 1;
-        int pageSize = 12;
-        int totalPage;
-        String where = "and categoryLevel2Id=" + id + "";
-        if (pageParameter!= null &&!pageParameter.equals("")) {
-            currentPage = Integer.parseInt(pageParameter);
-        }
-        try {
-            List<Product> listProduct = productDAO.findProductByPage(where,currentPage, pageSize);
-            int count = listProduct.get(0).getCount();
-            //根据总数据数以及每页的数据数计算总页数
-            if (count % pageSize == 0) {
-                totalPage = count / pageSize;
-            } else {
-                totalPage = count / pageSize + 1;
-            }
-            request.setAttribute("currentPage", currentPage);
-            request.setAttribute("totalPage", totalPage);
-            request.setAttribute("listProduct", listProduct);
-            request.getRequestDispatcher("dynamicPage/ProductList.jsp").forward(request, response);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
     protected void findProductByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         int currentPage = 1;
         int pageSize = 12;
         int totalPage;
         String where;
-        String id = request.getParameter("categoryId");
+        String productName = request.getParameter("productName");
+        String categoryId = request.getParameter("categoryId");
         String pageParameter = request.getParameter("currentPage");
-        if (id!=null){
-            where = "and categoryLevel2Id=" + id + "";
+        if (categoryId!=null && !categoryId.equals("")){
+            where = "and categoryLevel2Id=" + categoryId + "";
         }else {
             where = "";
+        }
+        if (productName!= null &&!productName.equals("")) {
+            where = where + " and name like '%" + productName + "%'";
         }
         if (pageParameter!= null &&!pageParameter.equals("")) {
             currentPage = Integer.parseInt(pageParameter);
@@ -224,6 +199,8 @@ public class ProductServlet extends HttpServlet {
             } else {
                 totalPage = count / pageSize + 1;
             }
+            request.setAttribute("productName",productName);
+            request.setAttribute("categoryId",categoryId);
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("totalPage", totalPage);
             request.setAttribute("listProduct", listProduct);

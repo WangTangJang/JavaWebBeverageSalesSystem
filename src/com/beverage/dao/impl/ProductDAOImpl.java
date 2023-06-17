@@ -78,26 +78,6 @@ public class ProductDAOImpl implements ProductDAO {
         return product;
     }
 
-
-    @Override
-    public List<Product> findProductByCategory(int secondCategory) throws Exception {
-        List<Product> list = new ArrayList<>();
-
-        Connection conn = bd.getConnection();
-        String sql = "select * from product where categoryLevel2Id=?";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setObject(1, secondCategory);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            Product product = new Product();
-            createProductFromResultSet(product, rs);
-            list.add(product);
-        }
-        bd.closeConnection(rs, ps, conn);
-
-        return list;
-    }
-
     @Override
     public List<Product> findProductByPage(String where, int page, int pageSize) throws Exception {
         List<Product> list = new ArrayList<>();
