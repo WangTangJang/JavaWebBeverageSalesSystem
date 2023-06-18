@@ -14,6 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <title>饮品销售系统-后台</title>
+    <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/CSS/AllList.css">
     <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/CSS/Index.css" />
 </head>
 <body>
@@ -28,34 +29,30 @@
 <!-- 主要内容 -->
 <div class="content">
     <div class="manage">
-        饮品管理
-
+        订单管理
         <table class="list">
             <tr>
-                <th>ID</th>
-                <th>饮品名</th>
-                <th>饮品描述</th>
-                <th>饮品价格</th>
-                <th>饮品库存</th>
-                <th>饮品一级分类</th>
-                <th>饮品二级分类</th>
-                <th>图片名</th>
+                <th>订单ID</th>
+                <th>用户ID</th>
+                <th>用户名</th>
+                <th>用户地址</th>
+                <th>创建时间</th>
+                <th>总费用</th>
+                <th>序列号</th>
             </tr>
             <c:forEach items="${requestScope.list}" var="n" varStatus="i">
                 <tr>
-                    <td class="first w4 c">${i.index+1}</td>
-                    <td>${n.name}</td>
-                    <td>${n.description}</td>
-                    <td>${n.price}</td>
-                    <td>${n.stock}</td>
-                    <td>${n.categoryLevel1Id}</td>
-                    <td>${n.categoryLevel2Id}</td>
-                    <td>${n.fileName}</td>
-                    <td class="w1 c"><a href="ProductServlet?op=findProductById&id=${n.id}">修改</a> <a
-                            class="manageDel2" href="ProductServlet?op=delProduct&id=${n.id}">删除</a></td>
+                    <td>${n.id}</td>
+                    <td>${n.userId}</td>
+                    <td>${n.loginName}</td>
+                    <td>${n.userAddress}</td>
+                    <td>${n.createTime}</td>
+                    <td>${n.cost}</td>
+                    <td>${n.serialNumber}</td>
+                    <td class="w1 c"><a href="orderServlet?op=findUserById&id=${n.id}">修改</a> <a
+                            class="manageDel2" href="orderServlet?op=delOrder&id=${n.id}">删除</a></td>
                 </tr>
             </c:forEach>
-
         </table>
     </div>
 </div>

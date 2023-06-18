@@ -58,7 +58,12 @@
                 </tr>
                 <tr>
                     <td class="field">用户类型：</td>
-                    <td><input type="text" class="type" name="type" value="${user.type}" /></td>
+                    <td>
+                        <select name="type" class="type">
+                            <option value="admin" <c:if test = "${user.type=='admin'}">selected = 'selected'</c:if>>管理员</option>
+                            <option value="user" <c:if test = "${user.type=='user'}">selected = 'selected'</c:if>>普通用户</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>

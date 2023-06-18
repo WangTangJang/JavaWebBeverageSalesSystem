@@ -14,6 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <title>饮品销售系统-后台</title>
+    <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/CSS/manageList.css" />
     <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/CSS/Index.css" />
 </head>
 <body>

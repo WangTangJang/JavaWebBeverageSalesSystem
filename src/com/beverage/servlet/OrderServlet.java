@@ -42,7 +42,7 @@ public class OrderServlet extends HttpServlet {
         try {
             List<Order> list = orderDAO.findAll();
             request.setAttribute("list", list);
-            request.getRequestDispatcher("dynamicPage/Mange/Orders.jsp").forward(request, response);
+            request.getRequestDispatcher("dynamicPage/Manage/Orders.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class OrderServlet extends HttpServlet {
         try {
             Order user = orderDAO.findOrderById(Integer.parseInt(id));
             request.setAttribute("user", user);
-            request.getRequestDispatcher("/dynamicPage/Mange/OrderModify.jsp").forward(request, response);
+            request.getRequestDispatcher("/dynamicPage/Manage/OrderModify.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

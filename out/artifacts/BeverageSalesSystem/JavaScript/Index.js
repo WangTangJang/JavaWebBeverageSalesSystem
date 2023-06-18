@@ -1,9 +1,9 @@
+const sidebarItems = document.querySelectorAll('.sidebar dt');
 
-    const sidebarItems = document.querySelectorAll('.sidebar li');
-
-    sidebarItems.forEach(item => {
+sidebarItems.forEach(item => {
     item.addEventListener('click', function () {
-        const subMenu = this.querySelector('ul');
+        const subMenu = this.querySelector('a');
+        alert(subMenu.title);
         if (subMenu) {
             if (subMenu.style.display === 'block') {
                 subMenu.style.display = 'none';
@@ -14,20 +14,20 @@
     });
 });
 
-    const sidebarLinks = document.querySelectorAll('.sidebar a');
+const sidebarLinks = document.querySelectorAll('.sidebar a');
 
-    sidebarLinks.forEach(link => {
+sidebarLinks.forEach(link => {
     link.addEventListener('mouseenter', function () {
         const dot = this.querySelector('::before');
         dot.style.opacity = '1';
     });
 
     link.addEventListener('mouseleave', function () {
-    const dot = this.querySelector('::before');
-    dot.style.opacity = '0';
-});
+        const dot = this.querySelector('::before');
+        dot.style.opacity = '0';
+    });
 });
 
-    // 显示公告栏
-    const announcement = document.querySelector('.announcement');
-    announcement.classList.add('visible');
+// 显示公告栏
+const announcement = document.querySelector('.announcement');
+announcement.classList.add('visible');

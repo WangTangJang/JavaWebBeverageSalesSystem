@@ -35,30 +35,29 @@ public class UserServlet extends HttpServlet {
      */
     protected void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /**
-         * 获取用户名和密码
-         */
         String loginName = request.getParameter("username");
-
         String password = request.getParameter("password");
-        /**
-         * 调用用户业务逻辑层登录方法
-         */
-        try {
-            User user = userDao.login(loginName, password);
-            /**
-             * 登录失败
-             */
-            if (user == null) {
-                request.setAttribute("ERROR", "用户名或者密码错误");
-                request.getRequestDispatcher("dynamicPage/Login.jsp").forward(request, response);
-            } else {
-                request.getSession().setAttribute("USERS", user);
-                response.sendRedirect("IndexServlet");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        String inputCode = request.getParameter("CaptchaGenerator");
+        String CaptchaGenerator= (String) request.getSession().getAttribute("captchaCode");
+        if (!inputCode.equals(CaptchaGenerator)){
+            request.getSession().setAttribute("ERROR", "验证码错误");
+            response.sendRedirect("dynamicPage/Login.jsp");
         }
+        else {
+            try {
+                User user = userDao.login(loginName, password);
+                if (user == null) {
+                    request.getSession().setAttribute("ERROR", "用户名或者密码错误");
+                    response.sendRedirect("dynamicPage/Login.jsp");
+                } else {
+                    request.getSession().setAttribute("USERS", user);
+                    response.sendRedirect("IndexServlet");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
     /**
      * 注册
@@ -107,7 +106,7 @@ public class UserServlet extends HttpServlet {
         try {
             List<User> list = userDao.findAll();
             request.setAttribute("list", list);
-            request.getRequestDispatcher("dynamicPage/Mange/Users.jsp").forward(request, response);
+            request.getRequestDispatcher("dynamicPage/Manage/Users.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,7 +139,7 @@ public class UserServlet extends HttpServlet {
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("phoneNumber");
         String id = request.getParameter("id");
-
+        String type = request.getParameter("type");
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
@@ -148,6 +147,7 @@ public class UserServlet extends HttpServlet {
         user.setFullName(fullName);
         user.setAddress(address);
         user.setPhoneNumber(phoneNumber);
+        user.setType(type);
         user.setId(Integer.parseInt(id));
         try {
             int r = userDao.modifyUser(user);
@@ -166,7 +166,7 @@ public class UserServlet extends HttpServlet {
         try {
             User user = userDao.findUserById(Integer.parseInt(id));
             request.setAttribute("user", user);
-            request.getRequestDispatcher("/dynamicPage/Mange/UsersModify.jsp").forward(request, response);
+            request.getRequestDispatcher("/dynamicPage/Manage/UsersModify.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

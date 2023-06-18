@@ -38,15 +38,18 @@ body {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    font-size: 20px;
 }
 
-.sidebar li {
-    margin-bottom: 10px;
+.sidebar dt {
+    font-weight: bold;
+    font-size: 28px;
 }
 
 .sidebar a {
+    font-size: 23px;
     text-decoration: none;
-    color: #333;
+    color: #000000;
     display: block;
     padding-left: 20px;
     position: relative;

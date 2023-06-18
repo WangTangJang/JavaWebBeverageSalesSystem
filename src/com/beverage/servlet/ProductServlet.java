@@ -138,7 +138,7 @@ public class ProductServlet extends HttpServlet {
         try {
             List<Product> list = productDAO.findAll();
             request.setAttribute("list", list);
-            request.getRequestDispatcher("dynamicPage/Mange/Products.jsp").forward(request, response);
+            request.getRequestDispatcher("dynamicPage/Manage/Products.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -167,7 +167,7 @@ public class ProductServlet extends HttpServlet {
         try {
             Product product = productDAO.findProductById(Integer.parseInt(id));
             request.setAttribute("product", product);
-            request.getRequestDispatcher("/dynamicPage/Mange/ProductModify.jsp").forward(request, response);
+            request.getRequestDispatcher("/dynamicPage/Manage/ProductModify.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -184,6 +184,7 @@ public class ProductServlet extends HttpServlet {
         String productName = request.getParameter("productName");
         String categoryId = request.getParameter("categoryId");
         String pageParameter = request.getParameter("currentPage");
+        String role = request.getParameter("role");
         PrintWriter out = response.getWriter();
         if (categoryId!=null && !categoryId.equals("")){
             where = "and categoryLevel2Id=" + categoryId + "";
@@ -199,12 +200,8 @@ public class ProductServlet extends HttpServlet {
         try {
             List<Product> listProduct = productDAO.findProductByPage(where,currentPage, pageSize);
             if (listProduct.size() == 0) {
-                System.out.println("你好");
-                out.print("<head>\n" +
-                        "    <meta charset=\"UTF-8\">\n" +
-                        "    <title>你好</title>\n" +
-                        "</head>");
-//                out.print("<script>alert('没有数据');location.href='IndexServlet';</script>");
+
+                out.print("<script>alert('没有数据');location.href='IndexServlet';</script>");
             }else {
                 int count = listProduct.get(0).getCount();
                 //根据总数据数以及每页的数据数计算总页数
@@ -218,7 +215,11 @@ public class ProductServlet extends HttpServlet {
                 request.setAttribute("currentPage", currentPage);
                 request.setAttribute("totalPage", totalPage);
                 request.setAttribute("listProduct", listProduct);
-                request.getRequestDispatcher("dynamicPage/ProductList.jsp").forward(request, response);
+                if (role!=null&&role.equals("admin")){
+                    request.getRequestDispatcher("dynamicPage/Manage/Products.jsp").forward(request,response);
+                }else {
+                    request.getRequestDispatcher("dynamicPage/ProductList.jsp").forward(request, response);
+                }
             }
         }
         catch (Exception e) {

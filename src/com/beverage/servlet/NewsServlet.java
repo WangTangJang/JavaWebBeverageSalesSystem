@@ -116,7 +116,7 @@ public class NewsServlet extends HttpServlet {
         try {
             List<News> list = newsDAO.findAll();
             request.setAttribute("list", list);
-            request.getRequestDispatcher("dynamicPage/Mange/News.jsp").forward(request, response);
+            request.getRequestDispatcher("dynamicPage/Manage/News.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,7 +136,7 @@ public class NewsServlet extends HttpServlet {
         try {
             News eNews = newsDAO.findNewsById(Integer.parseInt(id));
             request.setAttribute("en", eNews);
-            request.getRequestDispatcher("/dynamicPage/Mange/NewModify.jsp").forward(request, response);
+            request.getRequestDispatcher("/dynamicPage/Manage/NewModify.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

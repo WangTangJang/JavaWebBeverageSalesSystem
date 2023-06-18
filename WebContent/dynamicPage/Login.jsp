@@ -13,18 +13,18 @@
     <title>Starry Login</title>
     <link type="text/css" rel="stylesheet" href="<%= request.getContextPath() %>/CSS/Login.css" />
 </head>
-<% String error = (String) request.getAttribute("ERROR"); %>
+<% String error = (String) request.getSession().getAttribute("ERROR"); %>
 <% if (error != null) { %>
 <script>
     alert("<%= error %>");
 </script>
-<% } %>
+<% } request.getSession().invalidate(); %>
 <body>
 <canvas id="stars"></canvas>
 
 <div class="login-container">
     <h1>登录</h1>
-    <form method="post" action="/BeverageSalesSystem/UserServlet?op=login">
+    <form method="post" action="<%= request.getContextPath() %>/UserServlet?op=login">
         <div class="form-group">
             <label for="username">用户名称</label>
             <input type="text" id="username" name="username" placeholder="请输入用户名" required>
@@ -32,6 +32,13 @@
         <div class="form-group">
             <label for="password">用户密码</label>
             <input type="password" id="password" name="password" placeholder="请输入密码" required>
+        </div>
+        <div class="form-group">
+            <label for="CaptchaGenerator">验证码是</label>
+            <input type="text" id="CaptchaGenerator" name="CaptchaGenerator" placeholder="请输入验证码" required>
+        </div>
+        <div class="form-group">
+            <img src="<%= request.getContextPath() %>/CaptchaGenerator" class="captcha-img"  alt="验证码"/>
         </div>
         <div class="form-group">
             <input type="submit" value="登录">

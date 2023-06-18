@@ -4,21 +4,15 @@ import com.beverage.dao.impl.NewsDAOImpl;
 import com.beverage.dao.impl.ProductCategoryDAOImpl;
 import com.beverage.dao.impl.ProductDAOImpl;
 import com.beverage.model.News;
-import com.beverage.model.Product;
 import com.beverage.model.ProductCategory;
-
 import java.io.IOException;
 import java.io.Serial;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-
 /**
  * Servlet implementation class IndexServlet
  */
